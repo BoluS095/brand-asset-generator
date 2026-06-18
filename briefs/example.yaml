@@ -1,0 +1,29 @@
+# Example Brand Brief
+brand:
+  name: "Acme Studio"
+  tagline: "Create without limits"
+  colors:
+    primary: "#0f3460"
+    secondary: "#e94560"
+    accent: "#16213e"
+    background: "#1a1a2e"
+  fonts:
+    heading: "Inter"
+    body: "Inter"
+  logo: "assets/logo.png"
+  style: "modern, minimalist, tech-forward"
+
+assets:
+  - type: instagram_post
+    quantity: 5
+    theme: "product launch"
+  - type: instagram_story
+    quantity: 3
+    theme: "behind the scenes"
+  - type: linkedin_post
+    quantity: 3
+    theme: "thought leadership"
+
+output:
+  format: png
+  quality: high
