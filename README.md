@@ -1,14 +1,31 @@
 # 🎯 Brand Asset Generator
 
-> Generate complete brand asset packages from a single creative brief.
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+
+> Generate complete brand asset packages from a single creative brief using AI.
 
 ## What It Does
 
 Feed it a brand brief → get back a full asset package:
+
 - **Social media kits** — Posts, stories, covers for Instagram, LinkedIn, Twitter/X, Facebook
 - **Ad creatives** — Display ads in standard IAB sizes
 - **Brand collateral** — Business cards, letterheads, presentation templates
 - **Content graphics** — Blog headers, email banners, thumbnails
+
+## Quick Start
+
+```bash
+git clone https://github.com/BoluS095/brand-asset-generator.git
+cd brand-asset-generator
+pip install -r requirements.txt
+cp .env.example .env
+
+# Generate from example brief
+python generate.py --brief briefs/example.yaml --output ./output
+```
 
 ## How It Works
 
@@ -26,50 +43,52 @@ Feed it a brand brief → get back a full asset package:
 - **Content creators** — Produce consistent branded content at scale
 - **E-commerce** — Auto-generate product marketing assets from catalog data
 
-## Quick Start
-
-```bash
-git clone https://github.com/BoluS095/brand-asset-generator.git
-cd brand-asset-generator
-pip install -r requirements.txt
-cp .env.example .env
-# Add your API keys
-
-# Generate from a brief
-python generate.py --brief briefs/example.yaml --output ./output
-```
-
 ## Project Structure
 
 ```
 brand-asset-generator/
-├── generate.py           # Main entry point
-├── briefs/               # Brief templates & examples
-├── templates/            # Asset layout templates
+├── generate.py          # Main entry point
 ├── engines/
-│   ├── social.py         # Social media asset engine
-│   ├── ads.py            # Ad creative engine
-│   ├── collateral.py     # Brand collateral engine
-│   └── content.py        # Content graphics engine
+│   ├── social.py        # Social media asset generation
+│   └── __init__.py
 ├── utils/
-│   ├── brand_parser.py   # Parse brand guidelines
-│   ├── layout.py         # Layout & composition
-│   └── export.py         # Multi-format export
-├── requirements.txt
-└── README.md
+│   ├── brand_parser.py  # Brief parsing and validation
+│   └── __init__.py
+├── briefs/              # Example brand briefs
+└── requirements.txt
 ```
 
-## Roadmap
+## Brief Format
 
-- [x] Project architecture
-- [x] Brand brief parser
-- [ ] Social media asset engine (Instagram, LinkedIn, X)
-- [ ] Ad creative engine (IAB standard sizes)
-- [ ] Template system for consistent layouts
-- [ ] Multi-format export (PNG, SVG, PDF)
-- [ ] Web UI for brief input and preview
-- [ ] API endpoint for programmatic generation
+```yaml
+# briefs/example.yaml
+brand:
+  name: "Acme Corp"
+  colors:
+    primary: "#2563EB"
+    secondary: "#1E40AF"
+    accent: "#F59E0B"
+  fonts:
+    heading: "Inter"
+    body: "Open Sans"
+  style: "modern, clean, professional"
+
+assets:
+  - type: social_media
+    platforms: [instagram, linkedin]
+    variations: 3
+  - type: display_ads
+    sizes: ["300x250", "728x90", "160x600"]
+```
+
+## Contributing
+
+Contributions welcome! See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
 
-MIT
+MIT License — see [LICENSE](LICENSE).
+
+## Author
+
+**Rafał Korzeniewski** — Python developer, trainer, and [PyWaw](https://pywaw.org) co-organizer.
