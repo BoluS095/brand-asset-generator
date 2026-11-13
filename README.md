@@ -1,94 +1,61 @@
-# 🎯 Brand Asset Generator
+# Brand Asset Generator
 
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
-> Generate complete brand asset packages from a single creative brief using AI.
+A small Python prototype for loading a YAML brand brief and planning social-media asset dimensions. **It currently plans assets; it does not generate image files.**
 
-## What It Does
+## Current implementation
 
-Feed it a brand brief → get back a full asset package:
+- Load the brand and asset sections from a YAML brief.
+- Print brand metadata and a summary table of requested assets.
+- Plan social-media asset records using a small set of platform dimension presets.
+- Validate a few required brand fields and return warnings.
+- Support a dry run that exits before any generation step.
 
-- **Social media kits** — Posts, stories, covers for Instagram, LinkedIn, Twitter/X, Facebook
-- **Ad creatives** — Display ads in standard IAB sizes
-- **Brand collateral** — Business cards, letterheads, presentation templates
-- **Content graphics** — Blog headers, email banners, thumbnails
+## Not implemented yet
 
-## Quick Start
+- Image-generation or image-editing provider integrations.
+- Logo overlays, typography rendering, or brand collateral rendering.
+- Asset export, packaging, or delivery.
+- Automated tests or CI.
+
+The non-dry-run CLI currently reports that generation engines are coming soon. The project should be treated as an early-stage planning prototype, not as an end-to-end AI asset generator.
+
+## Quick start
+
+Python 3.10+ is recommended.
 
 ```bash
 git clone https://github.com/BoluS095/brand-asset-generator.git
 cd brand-asset-generator
+python -m venv .venv
+
+# Linux/macOS
+source .venv/bin/activate
+
+# Windows PowerShell
+# .venv\Scripts\Activate.ps1
+
 pip install -r requirements.txt
-cp .env.example .env
-
-# Generate from example brief
-python generate.py --brief briefs/example.yaml --output ./output
+python generate.py --brief briefs/example.yaml --dry-run
 ```
 
-## How It Works
+To see the current non-dry-run placeholder behaviour, omit `--dry-run`. It does not produce images.
+
+## Project structure
 
 ```
-1. Upload your brand brief (colors, fonts, logo, style direction)
-2. Select which asset types you need
-3. Generator creates multiple variations per asset
-4. Review, approve, and download your package
-```
-
-## Use Cases
-
-- **Agencies** — Generate first-draft assets for client pitches in minutes
-- **Startups** — Get a complete visual identity package without a design team
-- **Content creators** — Produce consistent branded content at scale
-- **E-commerce** — Auto-generate product marketing assets from catalog data
-
-## Project Structure
-
-```
-brand-asset-generator/
-├── generate.py          # Main entry point
-├── engines/
-│   ├── social.py        # Social media asset generation
-│   └── __init__.py
-├── utils/
-│   ├── brand_parser.py  # Brief parsing and validation
-│   └── __init__.py
-├── briefs/              # Example brand briefs
-└── requirements.txt
-```
-
-## Brief Format
-
-```yaml
-# briefs/example.yaml
-brand:
-  name: "Acme Corp"
-  colors:
-    primary: "#2563EB"
-    secondary: "#1E40AF"
-    accent: "#F59E0B"
-  fonts:
-    heading: "Inter"
-    body: "Open Sans"
-  style: "modern, clean, professional"
-
-assets:
-  - type: social_media
-    platforms: [instagram, linkedin]
-    variations: 3
-  - type: display_ads
-    sizes: ["300x250", "728x90", "160x600"]
+generate.py          # CLI and asset-plan summary
+engines/social.py    # Platform dimensions and SocialAsset planning records
+utils/brand_parser.py # YAML brand loading and simple validation
+briefs/example.yaml  # Example brief
 ```
 
 ## Contributing
 
-Contributions welcome! See [CONTRIBUTING.md](CONTRIBUTING.md).
+Contributions are welcome. The most useful next steps are automated tests for brief validation and asset planning, followed by a clearly scoped first image-generation adapter.
 
 ## License
 
-MIT License — see [LICENSE](LICENSE).
-
-## Author
-
-**Rafał Korzeniewski** — Python developer, trainer, and [PyWaw](https://pywaw.org) co-organizer.
+MIT. See [LICENSE](LICENSE).
